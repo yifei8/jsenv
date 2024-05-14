@@ -29,18 +29,18 @@ jobs:
           echo "1. Build jsenv.aar."
           python3 build_upload.py --version $CI_COMMIT_TAG --release
       - uses: actions/upload-artifact@v2
-	      with:
-	        name: upload v8 aar
-	        path: |
+        with:
+          name: upload v8 aar
+    	  path: |
             include
             out.gn/arm64.release/aars
             out.gn/arm.release.nov8symbols/aars
             out.gn/arm64.release.nov8symbols/aars
             out.gn/arm.release/aars
       - uses: actions/upload-artifact@v2
-	      with:
-	        name: upload v8 other
-	        path: |
+        with:
+          name: upload v8 other
+	  path: |
             out.gn/arm.release
             out.gn/arm64.release
             out.gn/arm.release.nov8symbols
