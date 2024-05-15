@@ -37,11 +37,3 @@ jobs:
             out.gn/arm.release.nov8symbols/aars
             out.gn/arm64.release.nov8symbols/aars
             out.gn/arm.release/aars
-      - name: Upload V8 OTHER
-        uses: actions/upload-artifact@v2
-        with:
-          path: |
-            out.gn/arm.release
-            out.gn/arm64.release
-            out.gn/arm.release.nov8symbols
-            out.gn/arm64.release.nov8symbols
