@@ -15,7 +15,7 @@ jobs:
         run: |
           export CI_PROJECT_DIR=`pwd`
           cd /root/v8
-          git checkout remotes/origin/9.3-lkgr
+          git checkout -b 9.3-lkgr origin/9.3-lkgr
           cp -R /root/v8/include $CI_PROJECT_DIR/v8-build/v8
           cd $CI_PROJECT_DIR/v8-build/v8/src
           echo "1. build v8 project."
