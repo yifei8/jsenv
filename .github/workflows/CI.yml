@@ -10,12 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - run: pwd
+      - run: ls -a
+      - run: cd /root/v8 && git remote -v
+      - run: cd /root/v8 && git log
       - name: "build v8"
         timeout-minutes: 720
         run: |
           export CI_PROJECT_DIR=`pwd`
-          cd /root/v8
-          git checkout -b 9.3-lkgr origin/9.3-lkgr
+          cd /root/v8 && git checkout -b 9.3-lkgr origin/9.3-lkgr
           cp -R /root/v8/include $CI_PROJECT_DIR/v8-build/v8
           cd $CI_PROJECT_DIR/v8-build/v8/src
           echo "1. build v8 project."
