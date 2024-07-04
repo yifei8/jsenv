@@ -16,7 +16,7 @@ jobs:
       - run: cd /root/v8 && git fetch
       - run: cd /root/v8 && git checkout -b 9.3-lkgr origin/9.3-lkgr
       - name: "build v8"
-        timeout-minutes: 720
+        timeout-minutes: 1000
         run: |
           export CI_PROJECT_DIR=`pwd`
           cp -R /root/v8/include $CI_PROJECT_DIR/v8-build/v8
