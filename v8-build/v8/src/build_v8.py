@@ -79,6 +79,7 @@ def install_result(out_dir, target, cpu, is_release, cwd_dir):
   make_dirs(target_dir)
   # copy v8_static
   v8_static = os.path.join(out_dir, "obj", "libv8_static.a")
+  print("v8_static path:%s" % v8_static)
   shutil.copy(v8_static, os.path.join(target_dir, "libv8_static.a"))
   # copy mksnapshot
   if target == 'android':
@@ -88,6 +89,7 @@ def install_result(out_dir, target, cpu, is_release, cwd_dir):
   else:
     print("Cannot find target %s!" % (target))
     return
+  print("v8_snapshot path:%s" % v8_snapshot)
   shutil.copy(v8_snapshot, os.path.join(target_dir, "mksnapshot"))
 
   #Don't compile libv8_static.a into libjsenv.so directly, as the no v8 symbol exported. We will use objects compile to solve this issue.
@@ -101,12 +103,16 @@ def install_result(out_dir, target, cpu, is_release, cwd_dir):
     shutil.copy(obj, dst)
   # Create v8_objects.gni from libv8_static.a, which include all the objects needed for jsenv building.
   obj_path = os.path.join(target_dir, "v8_objects.gni")
+  print("obj_path path:%s" % obj_path)
   fw = open(obj_path, "w")
   fw.write("v8_objects = [\n")
+  print("v8_objects = [")
   for obj in objs.split('\n'):
     ln = '"' + obj[obj.find("obj/") + 4:] + '",\n'
     fw.write(ln)
+    print("%s" % ln)
   fw.write("]")
+  print("]")
 
 def build_cpu_aarch_release(target, cpu, is_release, cwd):
   is_debug = is_release and 'false' or 'true'
